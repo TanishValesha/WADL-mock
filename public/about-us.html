@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Abous Us</title>
+</head>
+<body>
+    <h1>Our Trainers</h1>
+
+    <ul id="trainerList"></ul>
+
+    <script>
+        fetch("/api/trainers")
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById("trainerList");
+
+                data.forEach(trainer => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        ${trainer.name} - ${trainer.specialty} 
+                        (${trainer.experience} yrs exp)
+                    `;
+                    list.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>

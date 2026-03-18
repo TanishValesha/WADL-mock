@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Membership Plans</title>
+</head>
+<body>
+    <h1>Membership Plans</h1>
+
+    <ul id="membershipList"></ul>
+
+    <script>
+        fetch("/api/memberships")
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById("membershipList");
+                console.log(data);
+                data.forEach(plan => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        ${plan.planName} - ${plan.duration} 
+                        (₹${plan.price})
+                    `;
+                    list.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
